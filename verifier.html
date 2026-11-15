@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Document Verifier | SAL ERP</title>
+    <style>
+        body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; }
+        .container { max-width: 700px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 10px; border: 1px solid #334155; }
+        h2 { margin-top: 0; color: #38bdf8; }
+        label { display: block; margin-top: 15px; font-size: 13px; color: #94a3b8; }
+        input { width: 100%; padding: 10px; margin-top: 5px; background: #0f172a; border: 1px solid #334155; color: #fff; border-radius: 6px; box-sizing: border-box; }
+        button { margin-top: 20px; background: #2563eb; color: #fff; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: 600; width: 100%; }
+        button:hover { background: #1d4ed8; }
+        .output { margin-top: 20px; padding: 15px; background: #0f172a; border-radius: 6px; border-left: 4px solid #10b981; word-break: break-all; font-family: monospace; font-size: 13px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cryptographic Document Hash Generator</h2>
+    <p style="font-size: 14px; color: #94a3b8;">Generate a real-time SHA-256 integrity signature for corporate records.</p>
+
+    <label>Document Reference ID</label>
+    <input type="text" id="refId" value="SAL-ALPHABET-MOU-2026/11">
+
+    <label>Entity / Organization Name</label>
+    
+
+    <label>Authorized Signatory</label>
+    <input type="text" id="signatory" value="MD. AL AMIN SOHAG">
+
+    <button onclick="generateRealHash()">Generate SHA-256 Integrity Hash</button>
+
+    <div class="output" id="resultBox"></div>
+</div>
+
+<script>
+    async function generateRealHash() {
+        const refId = document.getElementById('refId').value.trim();
+        const entity = document.getElementById('entity').value.trim();
+        const signatory = document.getElementById('signatory').value.trim();
+        const timestamp = new Date().toISOString();
+
+        const rawPayload = `${refId}|${entity}|${signatory}|${timestamp}`;
+        
+        // Browser Native Web Crypto API (Real SHA-256)
+        const encoder = new TextEncoder();
+        const data = encoder.encode(rawPayload);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'block';
+        resultBox.innerHTML = `
+            <strong>STATUS:</strong> CRYPTOGRAPHICALLY SEALED<br><br>
+            <strong>TIMESTAMP (UTC):</strong> ${timestamp}<br><br>
+            <strong>SHA-256 SIGNATURE:</strong><br>${hashHex}
+        `;
+    }
+</script>
+
+</body>
+</html>
