@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strategic Partnership MoU | Salsabilah Amin Limited & Alphabet Inc.</title>
+    <title>Strategic Partnership MoU | Salsabilah Amin Limited</title>
     <style>
         :root {
             --bg-color: #f4f6f9;
@@ -59,11 +59,12 @@
             background-color: var(--card-bg);
             color: var(--text-main);
             border: 1px solid var(--border);
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 500;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -239,7 +240,6 @@
             text-align: center;
         }
 
-        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -283,12 +283,13 @@
 
     <div class="toolbar no-print">
         <div>
-            <strong>Partnership Hub</strong> &bull; Interactive Architecture View
+            <strong>SAL Enterprise Hub</strong> &bull; MoU Portal
         </div>
-        <div style="display: flex; gap: 8px;">
-            <button class="btn" onclick="toggleTheme()">🌓 Toggle Theme</button>
-            <button class="btn" onclick="openModal()">🛡️ Verify Metadata</button>
-            <button class="btn btn-primary" onclick="window.print()">🖨️ Export PDF / Print</button>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <a href="verifier.html" class="btn">🔐 SHA-256 Verifier &rarr;</a>
+            <button class="btn" onclick="toggleTheme()">🌓 Theme</button>
+            <button class="btn" onclick="openModal()">🛡️ Metadata</button>
+            <button class="btn btn-primary" onclick="window.print()">🖨️ Export PDF</button>
         </div>
     </div>
 
@@ -326,5 +327,3 @@
             <h3>ARTICLE I: PURPOSE & SCOPE OF COLLABORATION</h3>
             <ul>
                 <li><strong>1.1 Smart Hardware & OS Ecosystem:</strong> Deployment, CTS/VTS compliance auditing, and licensing integration of Google TV and Android OS across SAL’s consumer electronics product lines.</li>
-                <li><strong>1.2 Enterprise Cloud & AI Infrastructure:</strong> Integration of cloud architecture, Gemini API models, and enterprise automation tools into <em>VatOne ERP</em> and <em>Salsabilah-Empire-OS</em>.</li>
-                
